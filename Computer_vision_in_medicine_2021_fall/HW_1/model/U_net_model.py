@@ -140,6 +140,3 @@ def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
   model = Model(inputs=input, outputs=output)
 
   return model
-
-
-model = get_model(WIDTH=128,HEIGHT=128,INPT_CHANNELS=3,N_ch=16)
