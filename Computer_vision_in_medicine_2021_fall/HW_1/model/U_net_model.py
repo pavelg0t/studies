@@ -19,7 +19,18 @@ class ReflectionPadding2D(Layer):
     def call(self, x, mask=None):
         w_pad,h_pad = self.padding
         return tf.pad(x, [[0,0], [h_pad,h_pad], [w_pad,w_pad], [0,0] ], 'REFLECT')
+    
+    # For purooses as stated in: https://stackoverflow.com/questions/58678836/notimplementederror-layers-with-arguments-in-init-must-override-get-conf
+    def get_config(self):
 
+        config = super().get_config().copy()
+        config.update({
+            'padding': self.vocab_size,
+            'input_spec': self.input_spec
+        })
+        return config
+    
+    
 
 def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
 
