@@ -21,13 +21,20 @@ class ReflectionPadding2D(Layer):
         return tf.pad(x, [[0,0], [h_pad,h_pad], [w_pad,w_pad], [0,0] ], 'REFLECT')
     
     # For purooses as stated in: https://stackoverflow.com/questions/58678836/notimplementederror-layers-with-arguments-in-init-must-override-get-conf
-    def get_config(self):
+    # def get_config(self):
 
-        config = super().get_config().copy()
-        config.update({
-            'padding': self.vocab_size,
-            'input_spec': self.input_spec
-        })
+    #     config = super().get_config().copy()
+    #     config.update({
+    #         'padding': self.vocab_size,
+    #         'input_spec': self.input_spec
+    #     })
+    #     return config
+    
+    
+    # For purooses as stated in:  https://keras.io/guides/making_new_layers_and_models_via_subclassing/
+    def get_config(self):
+        config = super(ReflectionPadding2D, self).get_config()
+        config.update({"padding": self.padding, "input_spec": self.input_spec})
         return config
     
     
