@@ -37,6 +37,20 @@ class ReflectionPadding2D(Layer):
         config.update({"padding": self.padding, "input_spec": self.input_spec})
         return config
     
+    @classmethod
+    def from_config(cls, config):
+      """Creates a layer from its config.
+      This method is the reverse of `get_config`,
+      capable of instantiating the same layer from the config
+      dictionary. It does not handle layer connectivity
+      (handled by Network), nor weights (handled by `set_weights`).
+      Arguments:
+          config: A Python dictionary, typically the
+              output of get_config.
+      Returns:
+          A layer instance.
+      """
+      return cls(**config)
     
 
 def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
