@@ -3,57 +3,6 @@ from tensorflow.keras.layers import Layer, InputSpec, Input, Conv2D, Lambda, Max
 from tensorflow.keras import Model
 
 
-# class ReflectionPadding2D(Layer):
-#     '''
-#     Adding reflected padding before Conv2D() layer
-#     '''
-#     def __init__(self, padding=(1, 1), **kwargs):
-#         self.padding = tuple(padding)
-#         self.input_spec = [InputSpec(ndim=4)]
-#         super(ReflectionPadding2D, self).__init__(**kwargs)
-
-#     def compute_output_shape(self, s):
-#         """ If you are using "channels_last" configuration"""
-#         return (s[0], s[1] + 2 * self.padding[0], s[2] + 2 * self.padding[1], s[3])
-
-#     def call(self, x, mask=None):
-#         w_pad,h_pad = self.padding
-#         return tf.pad(x, [[0,0], [h_pad,h_pad], [w_pad,w_pad], [0,0] ], 'REFLECT')
-    
-#     # For purooses as stated in: https://stackoverflow.com/questions/58678836/notimplementederror-layers-with-arguments-in-init-must-override-get-conf
-#     # def get_config(self):
-
-#     #     config = super().get_config().copy()
-#     #     config.update({
-#     #         'padding': self.vocab_size,
-#     #         'input_spec': self.input_spec
-#     #     })
-#     #     return config
-    
-    
-#     # For purooses as stated in:  https://keras.io/guides/making_new_layers_and_models_via_subclassing/
-#     def get_config(self):
-#         config = super(ReflectionPadding2D, self).get_config()
-#         config.update({"padding": self.padding, "input_spec": self.input_spec})
-#         return config
-    
-    
-#     @classmethod
-#     def from_config(cls, config):
-#       """Creates a layer from its config.
-#       This method is the reverse of `get_config`,
-#       capable of instantiating the same layer from the config
-#       dictionary. It does not handle layer connectivity
-#       (handled by Network), nor weights (handled by `set_weights`).
-#       Arguments:
-#           config: A Python dictionary, typically the
-#               output of get_config.
-#       Returns:
-#           A layer instance.
-#       """
-#       return cls(**config)
-
-
 def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
 
   '''
