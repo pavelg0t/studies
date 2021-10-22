@@ -8,5 +8,5 @@ Our tasks:
 
 <div align="center">
   <img src="Lab_2_1.png" width="400px">
- <img src="Lab_2_2.png" width="450px">
+ <img src="Lab_2_2.png" width="500px">
 </div>
