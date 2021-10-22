@@ -13,16 +13,10 @@ Our tasks:
   </tr>
   <tr>
     <td>
-      <figure>
         <img src="Lab_2_1.png" width="400px"/>
-        <figcaption>Fig.1 -.</figcaption>
-      </figure> 
     </td>
     <td>
-      <figure>
-        <img src="Lab_2_2.png" width="400px">
-        <figcaption>Fig.1 -.</figcaption>
-      </figure> 
+        <img src="Lab_2_2.png" width="550px">
     </td>
   </tr>
 </table>
