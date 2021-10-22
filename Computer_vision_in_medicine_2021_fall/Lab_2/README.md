@@ -8,7 +8,7 @@ Our tasks:
 
       <figure>
         <img src="Lab_2_1.png" width="400px">
-        <figcaption>Fig.1 -.</figcaption>
+        <caption>Fig.1 -.</caption>
       </figure> 
 
 <div align="center">
