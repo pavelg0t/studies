@@ -26,6 +26,10 @@ Our tasks:
 
 <table>
   <tr>
+        <th>Fig 1</th>
+        <th>Fig 2</th>
+  </tr>
+  <tr>
     <td>
       <figure>
         <img src="Lab_2_1.png" width="400px"/>
