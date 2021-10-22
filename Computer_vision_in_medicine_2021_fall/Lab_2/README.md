@@ -6,6 +6,11 @@ Our tasks:
 1. Analyze learned kernel weights of the first convolutional layer in the SSD head detection model. Carry on a convolution operation on an example image using the retrieved kernel weights sand analyze the results.
 2. Run a simple edge detection model based on Sobel filter using TensorFlow functional API. Test it on few example images to see the basics of edge detection.
 
+      <figure>
+        <img src="Lab_2_1.png" width="400px">
+        <figcaption>Fig.1 -.</figcaption>
+      </figure> 
+
 <div align="center">
   <figure>
     <img src="Lab_2_1.png" width="400px">
