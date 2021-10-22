@@ -17,3 +17,20 @@ Our tasks:
     <figcaption>Fig.2 -.</figcaption>
   </figure> 
 </div>
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Lab_2_1.png" width="400px">
+        <figcaption>Fig.1 -.</figcaption>
+      </figure> 
+    </td>
+    <td>
+      <figure>
+        <img src="Lab_2_2.png" width="400px">
+        <figcaption>Fig.1 -.</figcaption>
+      </figure> 
+    </td>
+  </tr>
+</table>
