@@ -7,17 +7,8 @@ Our tasks:
 2. Run a simple edge detection model based on Sobel filter using TensorFlow functional API. Test it on few example images to see the basics of edge detection.
 
 
-![](Lab_2_1.png)
+![](Lab_2_1.png =400x)
 *image_caption*
 
-<p>
-  <img src="Lab_2_1.png" alt="First_conv2d_kernel_weights" align="center" style="width:400px;"/>
-  <em>image_caption</em>
-</p>
- 
-<p>
-  <img src="Lab_2_2.png" alt="First_conv2d_kernel_weights" align="center" style="width:500px;"/>
-  <em>image_caption</em>
-</p>
-
-
+![](Lab_2_2.png =450x)
+*image_caption*
