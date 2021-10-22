@@ -8,18 +8,18 @@ Our tasks:
 
       <figure>
          <caption>Fig.1 -.</caption>
-        <img src="Lab_2_1.png" width="400px">
+        <img src="Lab_2_1.png" width="400px"/>
          
       </figure> 
 
 <div align="center">
   <figure>
-    <img src="Lab_2_1.png" width="400px">
+    <img src="Lab_2_1.png" width="400px"/>
     <figcaption>Fig.1 -.</figcaption>
   </figure> 
   
   <figure>
-    <img src="Lab_2_2.png" width="550px">
+    <img src="Lab_2_2.png" width="550px"/>
     <figcaption>Fig.2 -.</figcaption>
   </figure> 
 </div>
@@ -28,7 +28,7 @@ Our tasks:
   <tr>
     <td>
       <figure>
-        <img src="Lab_2_1.png" width="400px">
+        <img src="Lab_2_1.png" width="400px"/>
         <figcaption>Fig.1 -.</figcaption>
       </figure> 
     </td>
