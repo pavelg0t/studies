@@ -8,8 +8,8 @@ Our tasks:
 
 <table>
   <tr>
-        <th>Fig 1</th>
-        <th>Fig 2</th>
+        <th>Fig 1. Kernel weights of the first convolutional layer in the SSD head detection model</th>
+        <th>Fig 2. Result of Sobel filtering without and with threshold (Sobel binary filtering)</th>
   </tr>
   <tr>
     <td>
