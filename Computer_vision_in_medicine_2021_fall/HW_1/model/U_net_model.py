@@ -1,7 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.layers import Layer, InputSpec, Input, Conv2D, Lambda, MaxPool2D, Conv2DTranspose, Concatenate, BatchNormalization
 from tensorflow.keras import Model
-
+import math
 
 def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
 
@@ -89,3 +89,69 @@ def get_model(WIDTH,HEIGHT,INPT_CHANNELS,N_ch=16):
   model = Model(inputs=input, outputs=output)
 
   return model
+
+
+
+# This layer could be used in the model architecture directly (but with additional computation cost)
+# Extract image patches for inferance
+class CreatePatches( tf.keras.layers.Layer ):
+
+  def __init__( self , patch_size ):
+    super( CreatePatches , self ).__init__()
+    self.patch_size = patch_size
+
+  def call(self, inputs ):
+    # If width or/and height of the rectangular image 
+    # are not multiples of 'patch_size' => then pad image with zeros
+    # print('Entering "Call"')
+    h,w = inputs.shape[-3:-1]
+    w_new = self.patch_size*((w//self.patch_size)+1) if (w - self.patch_size*(w//self.patch_size))>0 else w
+    h_new = self.patch_size*((h//self.patch_size)+1) if (h - self.patch_size*(h//self.patch_size))>0 else h
+    # Pad with Reflection
+    paddings = tf.constant([[0, h_new-h,], [0, w_new-w],[0,0]]) # [[Up,Down],[Left,Right],[channels]]
+    inputs = tf.pad(inputs, paddings, "REFLECT") 
+    # Normalize input
+    inputs = tf.keras.layers.Rescaling(1/255)(inputs)
+    # Initialize a first patch (top-left corner of the image)
+    patches = tf.expand_dims(inputs[0:self.patch_size, 0:self.patch_size, : ],axis=0)
+    for i in range( 0 , h_new , self.patch_size ):
+        for j in range( 0 , w_new , self.patch_size ):
+            if (i!=0) | (j!=0):
+              patch = tf.expand_dims(inputs[ i : i + self.patch_size, j : j + self.patch_size , : ],axis=0)
+              patches = tf.concat( [patches,patch], axis=0 )
+    return patches
+
+
+
+def concat_to_vector(x,ax):
+  res = x[0,:,:,:]
+  for i in range(1,x.shape[0]):
+    res = tf.concat([res,x[i,:,:,:]],axis=ax)
+  return res
+
+
+def stich_patches(patches,h,w):
+  '''
+  patches: Tensor of shape [Np,L,L,C]
+        h: height of the final image (multiples of L)
+        w: width of the final image(multiples of L)
+  '''
+  L = patches.shape[-2] #side-lenght of the patches
+  img = concat_to_vector(patches[:w//L,:,:,:],ax=1)
+  for i in range(1,h//L):
+    img = tf.concat([img,concat_to_vector(patches[i*w//L:(i+1)*w//L,:,:,:],ax=1)],axis=0)
+  return img
+
+
+def predict(model, image, patch_size):
+  '''
+  model: tf model 
+  image: Tensor type image
+  patch_size: size of a square patch the image will be cropped and stacked into a Tensor before prediction
+  '''
+  patches = CreatePatches( patch_size=patch_size )(image)
+  preds = model.predict(patches)
+  h_pad =  math.ceil(image.shape[-3]/patch_size)*patch_size
+  w_pad =  math.ceil(image.shape[-2]/patch_size)*patch_size 
+  prediction = stich_patches(preds,h_pad,w_pad)
+  return prediction[:image.shape[-3],:image.shape[-2],:]
