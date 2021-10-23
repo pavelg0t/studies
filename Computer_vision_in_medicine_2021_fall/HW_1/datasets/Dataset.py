@@ -31,13 +31,20 @@ def augment(x,y):
   return (x,y)
 
 
-def generate_dataset(im_pairs,BATCH_SIZE,SHUFFLE_SIZE,split_ration):
+def generate_dataset(im_pairs,BATCH_SIZE,SHUFFLE_SIZE,split_ratio):
+  
+  '''
+  im_pairs: list of tuples of paths pointing to RGB and segmentation mask images pair (ex. [ ('./rgb/fig0.png', './mask/fig_0.png') , (.., ...), ...] )
+  BATCH_SIZE: batch size of image pairs
+  SHUFFLE_SIZE: the size of shuffle deck 
+  split_ratio: train/validation dataset ratio
+  '''
 
   ds = tf.data.Dataset.from_tensor_slices(im_pairs)
 
   # Split dataset for training and validation
-  ds_train = ds.take( int(len(im_pairs)*split_ration) )
-  ds_val = ds.skip(int(len(im_pairs)*split_ration))
+  ds_train = ds.take( int(len(im_pairs)*split_ratio) )
+  ds_val = ds.skip(int(len(im_pairs)*split_ratio))
 
   ds_train = ds_train.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE).shuffle(SHUFFLE_SIZE)
   ds_train = ds_train.map(augment,num_parallel_calls=tf.data.AUTOTUNE)
