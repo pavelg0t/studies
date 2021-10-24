@@ -1,6 +1,5 @@
 import tensorflow as tf
 import tensorflow_addons as tfa
-import random
 
 def load_imgs(img_paths):
   #Load images
@@ -23,7 +22,8 @@ def preprocess(x,y):
 
 def augment(x,y):
   # Rotate randomlly
-  beta = random.randint(0, 360)/180*3.1415
+  beta = tf.random.uniform(shape=(), minval=1, maxval=360, dtype=tf.int32)
+  beta = beta.numpy()/180*3.1415
   x = tfa.image.rotate(x,angles=beta)
   y = tfa.image.rotate(y,angles=beta)
   # Deform imgs
