@@ -9,7 +9,8 @@ def get_Recall(y_truth, y_pred):
   by_class = { 'class ' + str(i): by_class[i] for i in range(len(by_class))}
   mean = by_class.mean()
   weighted = recall_score(y_truth, y_pred, average='weighted')
-  return {"metric": "Recall", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}.update(by_class)
+  res = {"metric": "Recall", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}.update(by_class)
+  return res
 
 def get_Precision(y_truth, y_pred):
   y_pred = y_pred >0.5
