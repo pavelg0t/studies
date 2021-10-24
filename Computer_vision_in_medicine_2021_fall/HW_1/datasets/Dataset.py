@@ -31,12 +31,11 @@ def augment(x,y):
   return (x,y)
 
 
-def generate_dataset(im_pairs,BATCH_SIZE,SHUFFLE_SIZE,split_ratio):
+def generate_dataset(im_pairs,BATCH_SIZE,split_ratio):
   
   '''
   im_pairs: list of tuples of paths pointing to RGB and segmentation mask images pair (ex. [ ('./rgb/fig0.png', './mask/fig_0.png') , (.., ...), ...] )
   BATCH_SIZE: batch size of image pairs
-  SHUFFLE_SIZE: the size of shuffle deck 
   split_ratio: train/validation dataset ratio
   '''
 
@@ -46,14 +45,14 @@ def generate_dataset(im_pairs,BATCH_SIZE,SHUFFLE_SIZE,split_ratio):
   ds_train = ds.take( int(len(im_pairs)*split_ratio) )
   ds_val = ds.skip(int(len(im_pairs)*split_ratio))
 
-  ds_train = ds_train.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE).shuffle(SHUFFLE_SIZE)
+  ds_train = ds_train.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE)
   ds_train = ds_train.map(augment,num_parallel_calls=tf.data.AUTOTUNE)
   ds_train = ds_train.map(preprocess,num_parallel_calls=tf.data.AUTOTUNE)
   ds_train = ds_train.batch(BATCH_SIZE)
   ds_train = ds_train.prefetch(tf.data.AUTOTUNE)
 
 
-  ds_val = ds_val.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE).shuffle(SHUFFLE_SIZE)
+  ds_val = ds_val.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE)
   ds_val = ds_val.map(preprocess,num_parallel_calls=tf.data.AUTOTUNE)
   ds_val = ds_val.batch(BATCH_SIZE)
   ds_val = ds_val.prefetch(tf.data.AUTOTUNE)
