@@ -1,6 +1,5 @@
-from sklearn.metrics import recall_score, f1_score, precision_score, jaccard_score, roc_curve, auc
+from sklearn.metrics import recall_score, f1_score, precision_score, jaccard_score
 import numpy as np
-import tensorflow as tf
 
 def get_Recall(y_truth, y_pred):
     y_pred = y_pred >0.5
@@ -31,12 +30,6 @@ def get_F1(y_truth, y_pred):
     res = { 'class ' + str(i):  np.round(by_class[i],3).tolist() for i in range(by_class.size)} 
     res.update({"metric": "F1", "mean": np.round(mean,3).tolist(), "weighted": np.round(weighted,3).tolist()})
     return res
-
-def get_AUC(y_truth, y_pred):
-    m = tf.keras.metrics.AUC()
-    m.update_state(y_truth, y_pred)
-    return m.result().numpy()
-
 
 def get_IoU(y_truth, y_pred):
     '''
