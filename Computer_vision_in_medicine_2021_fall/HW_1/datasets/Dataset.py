@@ -47,17 +47,17 @@ def generate_dataset(im_pairs,BATCH_SIZE,split_ratio):
 
   ds_train = ds_train.shuffle(int(len(im_pairs)*split_ratio), seed=42)
   ds_train = ds_train.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE)
-  ds_train = ds_train.cache()
-  ds_train = ds_train.batch(BATCH_SIZE)
+  #ds_train = ds_train.cache()
   ds_train = ds_train.map(augment,num_parallel_calls=tf.data.AUTOTUNE)
   ds_train = ds_train.map(preprocess,num_parallel_calls=tf.data.AUTOTUNE)
+  ds_train = ds_train.batch(BATCH_SIZE)
   ds_train = ds_train.prefetch(tf.data.AUTOTUNE)
 
 
   ds_val = ds_val.map(load_imgs,num_parallel_calls=tf.data.AUTOTUNE)
-  ds_train = ds_train.cache()
-  ds_val = ds_val.batch(BATCH_SIZE)
+  #ds_train = ds_train.cache()
   ds_val = ds_val.map(preprocess,num_parallel_calls=tf.data.AUTOTUNE)
+  ds_val = ds_val.batch(BATCH_SIZE)
   ds_val = ds_val.prefetch(tf.data.AUTOTUNE)
 
   return (ds_train, ds_val)
