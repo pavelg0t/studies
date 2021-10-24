@@ -40,7 +40,7 @@ def generate_dataset(im_pairs,BATCH_SIZE,split_ratio):
   split_ratio: train/validation dataset ratio
   '''
 
-  ds = tf.data.Dataset.from_tensor_slices(im_pairs).shuffle(len(im_pairs), seed=42)
+  ds = tf.data.Dataset.from_tensor_slices(im_pairs) #.shuffle(len(im_pairs), seed=42)
 
   # Split dataset for training and validation
   ds_train = ds.take( int(len(im_pairs)*split_ratio) )
