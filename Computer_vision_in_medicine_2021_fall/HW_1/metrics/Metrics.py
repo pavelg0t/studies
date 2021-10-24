@@ -5,10 +5,11 @@ import tensorflow as tf
 def get_Recall(y_truth, y_pred):
   y_pred = y_pred >0.5
   y_pred = y_pred.astype(int)
-  by_class = recall_score(y_truth, y_pred, average=None)
+  by_class = np.round(recall_score(y_truth, y_pred, average=None),3).tolist()
+  by_class = { 'class ' + str(i): by_class[i] for i in range(len(by_class))}
   mean = by_class.mean()
   weighted = recall_score(y_truth, y_pred, average='weighted')
-  return {"metric": "Recall", "by class": tuple(np.round(by_class,3).tolist()), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return {"metric": "Recall", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}.update(by_class)
 
 def get_Precision(y_truth, y_pred):
   y_pred = y_pred >0.5
