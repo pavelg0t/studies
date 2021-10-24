@@ -5,28 +5,32 @@ import tensorflow as tf
 def get_Recall(y_truth, y_pred):
   y_pred = y_pred >0.5
   y_pred = y_pred.astype(int)
-  by_class = np.round(recall_score(y_truth, y_pred, average=None),3).tolist()
-  by_class = { 'class ' + str(i): by_class[i] for i in range(len(by_class))}
+  by_class = np.round(recall_score(y_truth, y_pred, average=None),3)
   mean = by_class.mean()
   weighted = recall_score(y_truth, y_pred, average='weighted')
-  res = {"metric": "Recall", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}.update(by_class)
+  res = { 'class ' + str(i): by_class[i] for i in range(by_class.size)} 
+  res.update{"metric": "Recall", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
   return res
 
 def get_Precision(y_truth, y_pred):
   y_pred = y_pred >0.5
   y_pred = y_pred.astype(int)
-  by_class = precision_score(y_truth, y_pred, average=None)
+  by_class = np.round(precision_score(y_truth, y_pred, average=None),3)
   mean = by_class.mean()
   weighted = precision_score(y_truth, y_pred, average='weighted')
-  return {"metric": "Precision", "by class": tuple(np.round(by_class,3).tolist()), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  res = { 'class ' + str(i): by_class[i] for i in range(by_class.size)} 
+  res.update{"metric": "Precision", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return res
 
 def get_F1(y_truth, y_pred):
   y_pred = y_pred >0.5
   y_pred = y_pred.astype(int)
-  by_class = f1_score(y_truth, y_pred, average=None)
+  by_class = np.round(f1_score(y_truth, y_pred, average=None),3)
   mean = by_class.mean()
   weighted = f1_score(y_truth, y_pred, average='weighted')
-  return {"metric": "F1", "by class": tuple(np.round(by_class,3).tolist()), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  res = { 'class ' + str(i): by_class[i] for i in range(by_class.size)} 
+  res.update{"metric": "F1", "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return res
 
 def get_AUC(y_truth, y_pred):
   m = tf.keras.metrics.AUC()
