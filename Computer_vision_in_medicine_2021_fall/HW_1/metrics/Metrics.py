@@ -8,7 +8,7 @@ def get_Recall(y_truth, y_pred):
   by_class = recall_score(y_truth, y_pred, average=None)
   mean = by_class.mean()
   weighted = recall_score(y_truth, y_pred, average='weighted')
-  return {"by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return {"metric": "Recall", "by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
 
 def get_Precision(y_truth, y_pred):
   y_pred = y_pred >0.5
@@ -16,7 +16,7 @@ def get_Precision(y_truth, y_pred):
   by_class = precision_score(y_truth, y_pred, average=None)
   mean = by_class.mean()
   weighted = precision_score(y_truth, y_pred, average='weighted')
-  return {"by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return {"metric": "Precision", "by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
 
 def get_F1(y_truth, y_pred):
   y_pred = y_pred >0.5
@@ -24,7 +24,7 @@ def get_F1(y_truth, y_pred):
   by_class = f1_score(y_truth, y_pred, average=None)
   mean = by_class.mean()
   weighted = f1_score(y_truth, y_pred, average='weighted')
-  return {"by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
+  return {"metric": "F1", "by class": np.round(by_class,3).tolist(), "mean": np.round(mean,3), "weighted": np.round(weighted,3)}
 
 def get_AUC(y_truth, y_pred):
   m = tf.keras.metrics.AUC()
