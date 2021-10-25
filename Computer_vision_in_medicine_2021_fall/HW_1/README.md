@@ -14,7 +14,7 @@
 
 <table>
   <tr>
-        <th width="680px" style="text-align:center">Fig 1. Prediction results of the trained model 
+        <th width="800px" style="text-align:center">Fig 1. Prediction results of the trained model 
 		('Pred' - prediction, 'Pred >0.8' - prediction with threshold of 0.8,
 		'Truth' - the true values, 'RGB' - real image of the inner eye)</th>
   </tr>
@@ -27,7 +27,8 @@
 
 <table>
   <tr>
-        <th width="680px" style="text-align:center">Fig 2. Main metrics' scores on test data 
+        <th width="800px" style="text-align:center">Fig 2. Main metrics' scores on 
+		test data of the <a href="http://www.isi.uu.nl/Research/Databases/DRIVE/">DRIVE dataset</a> 
 		('class 0' - background, 'class 1' - blood vessels</th>
   </tr>
   <tr>
@@ -39,7 +40,8 @@
 
 <table>
   <tr>
-        <th width="680px" style="text-align:center">Fig 3. IoU metric scores on test data 
+        <th width="800px" style="text-align:center">Fig 3. IoU metric scores on 
+		test data of the <a href="http://www.isi.uu.nl/Research/Databases/DRIVE/">DRIVE dataset</a>
 		('class 0' - background, 'class 1' - blood vessels</th>
   </tr>
   <tr>
