@@ -19,7 +19,7 @@
 		'Truth' - the true values, 'RGB' - real image of the inner eye)</th>
   </tr>
   <tr>
-    <td style="text-align:center">
+    <td align="center">
         <img src="Prediction_examples.PNG" width="600px"/>
     </td>
   </tr>
@@ -32,7 +32,7 @@
 		('class 0' - background, 'class 1' - blood vessels</th>
   </tr>
   <tr>
-    <td style="text-align:center">
+    <td align="center">
         <img src="Metrics_1.PNG" width="360px"/>
     </td>
   </tr>
@@ -45,7 +45,7 @@
 		('class 0' - background, 'class 1' - blood vessels</th>
   </tr>
   <tr>
-    <td style="text-align:center">
+    <td align="center">
         <img src="Metrics_2.PNG" width="400px"/>
     </td>
   </tr>
