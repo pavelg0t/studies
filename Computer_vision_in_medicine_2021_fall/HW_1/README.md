@@ -5,7 +5,7 @@
 
 <p>Our tasks:</p>
 <ol>
-<li>Unifying data from <a href="http://www.isi.uu.nl/Research/Databases/DRIVE/">DRIVE</a>, <a href="https://cecas.clemson.edu/~ahoover/stare/">STARE</a> and <a href="http://www5.cs.fau.de/research/data/fundus-images/">HRF</a> datasets. Splitting it into train and test sets.</li>
+<li>Unify data from <a href="http://www.isi.uu.nl/Research/Databases/DRIVE/">DRIVE</a>, <a href="https://cecas.clemson.edu/~ahoover/stare/">STARE</a> and <a href="http://www5.cs.fau.de/research/data/fundus-images/">HRF</a> datasets. Split it into train and test sets.</li>
 <li>Crop every RGB image and corresponding vessels mask into multiple patches of 128x128px size.</li>
 <li>Generate train/val datasets based on tf.data api.</li>
 <li>Make a model for image segmentation based on U-NET architecture.</li>
